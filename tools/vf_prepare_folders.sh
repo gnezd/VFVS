@@ -56,7 +56,7 @@ fi
 # Getting user confirmation
 echo
 while true; do
-    read -p "Do you really wish prepare/reset the output-files folder? " answer
+    read -p "Do you really wish to prepare/reset the output-files folder? " answer
     case ${answer} in
         [Yy]* ) confirm="yes"; break;;
         [Nn]* ) confirm="no"; break;;

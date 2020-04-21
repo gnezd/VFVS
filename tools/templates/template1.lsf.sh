@@ -32,6 +32,7 @@
 #BSUB -W 04:00
 #BSUB -R "rusage[mem=500, scratch=2000]"
 #BSUB -R "span[ptile=4]"
+#BSUB -R "select[model==EPYC_7742]"
 #BSUB -n 4
 #BSUB -oo ../workflow/output-files/jobs/job-1.1_%J.out           # File to which standard out will be written
 #BSUB -wt '5'
@@ -231,7 +232,7 @@ if [ "${VF_VERBOSITY_LOGFILES}" = "debug" ]; then
 fi
 
 # VF_TMPDIR
-export VF_TMPDIR="$(grep -m 1 "^tempdir=" ${VF_CONTROLFILE} | tr -d '[[:space:]]' | awk -F '[=#]' '{print $2}')"
+export VF_TMPDIR="$(grep -m 1 "^tempdir_default=" ${VF_CONTROLFILE} | tr -d '[[:space:]]' | awk -F '[=#]' '{print $2}')"
 # Creating the ${VF_TMPDIR}/${USER} folder if not present
 if [ ! -d "${VF_TMPDIR}/${USER}" ]; then
     mkdir -p ${VF_TMPDIR}/${USER}
